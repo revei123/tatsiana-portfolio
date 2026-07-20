@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import BrandLogo from "@/components/BrandLogo";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Header() {
-  const { t, locale, toggleLocale } = useLanguage();
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -56,14 +57,7 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <button
-            type="button"
-            onClick={toggleLocale}
-            className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted transition-colors hover:border-neon-cyan/40 hover:text-neon-cyan"
-            aria-label="Switch language"
-          >
-            {locale === "ru" ? "EN" : "RU"}
-          </button>
+          <LanguageSwitcher />
           <a
             href={LINKS.telegram}
             target="_blank"
@@ -74,14 +68,17 @@ export default function Header() {
           </a>
         </div>
 
-        <button
-          type="button"
-          className="rounded-lg border border-white/10 p-2 text-foreground md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Close menu" : "Open menu"}
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher />
+          <button
+            type="button"
+            className="rounded-lg border border-white/10 p-2 text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Close menu" : "Open menu"}
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -103,24 +100,15 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
-              <div className="mt-2 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={toggleLocale}
-                  className="rounded-lg border border-white/10 px-3 py-2 text-xs font-semibold uppercase"
-                >
-                  {locale === "ru" ? "EN" : "RU"}
-                </button>
-                <a
-                  href={LINKS.telegram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary flex-1 rounded-xl px-4 py-2 text-center text-sm"
-                  onClick={() => setOpen(false)}
-                >
-                  {t.nav.cta}
-                </a>
-              </div>
+              <a
+                href={LINKS.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary mt-2 rounded-xl px-4 py-2 text-center text-sm"
+                onClick={() => setOpen(false)}
+              >
+                {t.nav.cta}
+              </a>
             </nav>
           </motion.div>
         )}
