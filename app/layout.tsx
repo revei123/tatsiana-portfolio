@@ -58,9 +58,10 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${manrope.variable} ${unbounded.variable} ${jetbrains.variable} h-full antialiased`}
+      className={`${manrope.variable} ${unbounded.variable} ${jetbrains.variable} antialiased`}
     >
-      <body className="bg-mesh min-h-full font-sans text-foreground">
+      <body className="font-sans text-foreground">
+        <div className="site-bg" aria-hidden="true" />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>
