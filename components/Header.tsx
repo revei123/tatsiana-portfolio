@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import BrandLogo from "@/components/BrandLogo";
 import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -36,9 +37,10 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a
           href="#top"
-          className="font-display text-xl font-semibold tracking-tight text-white"
+          className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/60"
+          aria-label="Татьяна Яновская — разработчик ПО"
         >
-          TY<span className="text-neon-cyan">.</span>
+          <BrandLogo priority />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Main">

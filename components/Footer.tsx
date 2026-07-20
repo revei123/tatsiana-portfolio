@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, Send } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import { GithubIcon } from "@/components/GithubIcon";
 import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
@@ -19,6 +20,12 @@ export default function Footer() {
           className="glass relative overflow-hidden rounded-3xl px-6 py-12 text-center sm:px-12 sm:py-16"
         >
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-neon-cyan/10 via-transparent to-neon-purple/15" />
+          <div className="relative mb-8 flex justify-center">
+            <BrandLogo
+              height={72}
+              className="h-14 w-auto rounded-lg object-contain sm:h-16"
+            />
+          </div>
           <h2 className="relative font-display text-3xl font-bold sm:text-4xl md:text-5xl">
             <span className="text-gradient">{t.footer.cta}</span>
           </h2>

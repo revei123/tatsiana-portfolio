@@ -19,14 +19,34 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tatsiana Yanovskaya — AI Engineer & Python Developer",
+  title: "Татьяна Яновская — разработчик ПО | AI Engineer",
   description:
     "AI-инженер из Беларуси. Telegram-боты, LangChain, автоматизация и веб-разработка. Remote · USDT.",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: [{ url: "/logo.png" }],
+    shortcut: ["/favicon.png"],
+  },
   openGraph: {
-    title: "Tatsiana Yanovskaya — AI Engineer",
+    title: "Татьяна Яновская — разработчик ПО",
     description:
-      "Intelligent solutions: Telegram bots, LangChain pipelines, 3D automation & web.",
+      "AI Engineer & Python Developer. Telegram-боты, LangChain, автоматизация и веб.",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 512,
+        height: 512,
+        alt: "Татьяна Яновская — разработчик ПО",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "Татьяна Яновская — разработчик ПО",
+    description:
+      "AI Engineer & Python Developer. Telegram-боты, LangChain, автоматизация и веб.",
+    images: ["/logo.png"],
   },
 };
 

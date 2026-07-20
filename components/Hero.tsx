@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+import BrandLogo from "@/components/BrandLogo";
 import { GithubIcon } from "@/components/GithubIcon";
 import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
@@ -53,9 +54,13 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <p className="mb-3 font-display text-sm font-medium tracking-widest text-neon-cyan uppercase">
-            {t.hero.name}
-          </p>
+          <div className="mb-5">
+            <BrandLogo
+              priority
+              height={80}
+              className="h-16 w-auto rounded-lg object-contain sm:h-20"
+            />
+          </div>
           <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
             <span className="text-gradient">{t.hero.title}</span>
           </h1>
