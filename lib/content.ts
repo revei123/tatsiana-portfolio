@@ -47,6 +47,13 @@ export const content = {
       private: "Приватный репозиторий",
       items: [
         {
+          title: "Каталог промышленного оборудования",
+          description:
+            "Динамический каталог: 12 категорий, карточки с техпараметрами, фильтры, поиск и форма заявки на подбор.",
+          tags: ["Next.js", "TypeScript", "Tailwind", "React"],
+          href: "https://catalog-portfolio-five.vercel.app/",
+        },
+        {
           title: "Сайт услуг по бурению скважин",
           description:
             "Современный адаптивный лендинг с формой захвата лидов и оптимизацией скорости загрузки.",
@@ -117,6 +124,11 @@ export const content = {
           author: "Елена В.",
           role: "Арт-директор 3D-визуализации",
         },
+        {
+          text: "Нужен был каталог оборудования с категориями, фильтрами и понятными карточками позиций. Татьяна собрала всё под ключ: удобно менеджерам и клиентам, заявки стали приходить быстрее. Без лишней воды, в срок.",
+          author: "Игорь С.",
+          role: "Руководитель отдела продаж",
+        },
       ],
     },
     blog: {
@@ -185,6 +197,13 @@ export const content = {
       soon: "Soon",
       private: "Private repository",
       items: [
+        {
+          title: "Industrial Equipment Catalog",
+          description:
+            "Dynamic catalog with 12 categories, spec cards, filters, search, and an inquiry form for equipment selection.",
+          tags: ["Next.js", "TypeScript", "Tailwind", "React"],
+          href: "https://catalog-portfolio-five.vercel.app/",
+        },
         {
           title: "Well Drilling Services Website",
           description:
@@ -255,6 +274,11 @@ export const content = {
           text: "We needed automation for routine 3ds Max tasks. Tatsiana wrote scripts that now prepare scenes for render by themselves. Clean code, professional approach.",
           author: "Elena V.",
           role: "Art director, 3D visualization",
+        },
+        {
+          text: "We needed an equipment catalog with categories, filters, and clear product cards. Tatsiana delivered end to end — easy for both sales and clients, inquiries started coming in faster. On time, no fluff.",
+          author: "Igor S.",
+          role: "Head of Sales",
         },
       ],
     },
