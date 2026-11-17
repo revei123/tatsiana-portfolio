@@ -1,51 +1,32 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+
+const paints = ["bg-yellow", "bg-sky", "bg-mint", "bg-cream-2"];
+const tilts = ["-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
 
 export default function Testimonials() {
   const { t } = useLanguage();
 
   return (
-    <section id="testimonials" className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-center"
-        >
-          <h2 className="font-display text-3xl font-bold sm:text-4xl">
-            <span className="text-gradient">{t.testimonials.title}</span>
-          </h2>
-          <p className="mt-3 text-muted">{t.testimonials.subtitle}</p>
-        </motion.div>
-
-        <div className="grid gap-6 md:grid-cols-3">
-          {t.testimonials.items.map((item, index) => (
-            <motion.article
+    <section className="section">
+      <div className="wrap">
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.reviews.eyebrow}</p>
+        <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.reviews.title}</h2>
+        <div className="mt-8 columns-1 gap-4 md:columns-2">
+          {t.reviews.items.map((item, index) => (
+            <figure
               key={item.author}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass glass-hover flex flex-col rounded-3xl p-6"
+              className={`bubble mb-4 break-inside-avoid p-5 ${paints[index % paints.length]} ${tilts[index % tilts.length]}`}
             >
-              <Quote className="mb-4 text-neon-purple" size={28} />
-              <div className="mb-4 flex gap-1 text-neon-cyan">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={14} fill="currentColor" />
-                ))}
-              </div>
-              <p className="flex-1 text-sm leading-relaxed text-muted">
-                &ldquo;{item.text}&rdquo;
-              </p>
-              <div className="mt-6 border-t border-white/10 pt-4">
-                <p className="font-semibold text-white">{item.author}</p>
-                <p className="text-xs text-muted">{item.role}</p>
-              </div>
-            </motion.article>
+              <blockquote className="text-base leading-relaxed">
+                <p>{item.text}</p>
+              </blockquote>
+              <figcaption className="mt-4 border-t-2 border-ink pt-3">
+                <p className="font-bold">{item.author}</p>
+                <p className="text-sm">{item.role}</p>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

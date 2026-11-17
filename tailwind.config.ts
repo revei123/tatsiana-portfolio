@@ -12,19 +12,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#0a0a0f",
-        foreground: "#e2e8f0",
-        "neon-cyan": "#00f0ff",
-        "neon-purple": "#7b2ff7",
-        muted: "#94a3b8",
+        background: "#f4f1ea",
+        foreground: "#1b1916",
+        paper: "#f4f1ea",
+        card: "#fbf9f4",
+        ink: "#1b1916",
+        accent: "#0f5c56",
+        muted: "#5c564c",
+        line: "#e3dcd0",
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
         display: ["var(--font-unbounded)", "system-ui", "sans-serif"],
-        mono: ["var(--font-jetbrains)", "monospace"],
-      },
-      boxShadow: {
-        glow: "0 0 24px rgba(0, 240, 255, 0.25)",
       },
     },
   },
