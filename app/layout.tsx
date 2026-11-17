@@ -59,15 +59,29 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Татьяна Яновская",
-  url: SITE_URL,
-  email: LINKS.emailRaw,
-  image: `${SITE_URL}/og.png`,
-  description,
-  areaServed: "Remote",
-  availableLanguage: ["Russian", "English"],
-  sameAs: [LINKS.telegram, LINKS.github],
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "Татьяна Яновская",
+      alternateName: "Tatsiana Yanovskaya",
+      url: SITE_URL,
+      email: LINKS.emailRaw,
+      image: `${SITE_URL}/portrait.webp`,
+      sameAs: [LINKS.telegram, LINKS.github],
+      knowsLanguage: ["ru", "en"],
+    },
+    {
+      "@type": "ProfessionalService",
+      name: "Татьяна Яновская",
+      url: SITE_URL,
+      email: LINKS.emailRaw,
+      image: `${SITE_URL}/og.png`,
+      description,
+      areaServed: "Remote",
+      availableLanguage: ["Russian", "English"],
+      founder: { "@type": "Person", name: "Татьяна Яновская" },
+    },
+  ],
 };
 
 export default function RootLayout({

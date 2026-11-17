@@ -8,7 +8,7 @@ export default function Process() {
   return (
     <section id="process" className="section scroll-mt-28">
       <div className="wrap">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.process.eyebrow}</p>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.process.eyebrow}</p>
         <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.process.title}</h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">{t.process.lead}</p>
         <ol className="step-rail mt-8">

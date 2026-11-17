@@ -30,7 +30,7 @@ export default function Header() {
 
         <nav className="hidden items-center gap-4 xl:flex" aria-label="Main">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-semibold hover:text-coral">
+            <a key={link.href} href={link.href} className="inline-flex min-h-12 items-center text-sm font-semibold hover:text-rust">
               {link.label}
             </a>
           ))}
@@ -50,6 +50,7 @@ export default function Header() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink bg-cream-2"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
+            aria-controls="mobile-nav"
             aria-label={open ? t.nav.close : t.nav.menu}
           >
             {open ? <CloseIcon /> : <MenuIcon />}
@@ -58,7 +59,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="border-t-2 border-ink bg-yellow xl:hidden" aria-label="Main">
+        <nav id="mobile-nav" className="border-t-2 border-ink bg-yellow xl:hidden" aria-label="Main">
           <div className="wrap flex flex-col gap-1 py-3">
             {links.map((link) => (
               <a

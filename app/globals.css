@@ -6,9 +6,11 @@
   --cream-2: #fffaf1;
   --yellow: #ffe14a;
   --coral: #ff5a36;
+  --rust: #8f2d16;
   --sky: #9fd7e8;
   --mint: #c8f0b4;
-  --muted: #5e584e;
+  --muted: #4e493f;
+  --cream-on-ink: #f3ecdf;
   --background: var(--cream);
   --foreground: var(--ink);
 }
@@ -21,6 +23,8 @@
   --color-card: var(--cream-2);
   --color-yellow: var(--yellow);
   --color-coral: var(--coral);
+  --color-rust: var(--rust);
+  --color-cream-on-ink: var(--cream-on-ink);
   --color-sky: var(--sky);
   --color-mint: var(--mint);
   --color-muted: var(--muted);
@@ -34,6 +38,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
   background: var(--cream);
 }
 
@@ -138,14 +143,22 @@ body {
   transform: rotate(-3deg);
 }
 
-.mascot {
-  transform-origin: 50% 85%;
-  animation: sway 3.4s ease-in-out infinite;
+.mascot-sit,
+.mascot-lost {
+  transform-origin: 50% 90%;
+  animation: sway 4s ease-in-out infinite;
 }
 
 .mascot .eye-lid {
+  transform-box: fill-box;
   transform-origin: center;
-  animation: blink 4.8s infinite;
+  animation: blink 5.2s infinite;
+}
+
+.arm-wave {
+  transform-box: fill-box;
+  transform-origin: 30% 100%;
+  animation: wave 1.8s ease-in-out infinite;
 }
 
 .portrait-frame {
@@ -196,10 +209,20 @@ body {
 @keyframes sway {
   0%,
   100% {
-    transform: rotate(-3deg) translateY(0);
+    transform: rotate(-2deg);
   }
   50% {
-    transform: rotate(3deg) translateY(-6px);
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-10deg);
   }
 }
 
@@ -225,8 +248,10 @@ body {
     scroll-behavior: auto;
   }
 
-  .mascot,
+  .mascot-sit,
+  .mascot-lost,
   .mascot .eye-lid,
+  .arm-wave,
   .btn,
   .portrait-frame,
   .work-shot {

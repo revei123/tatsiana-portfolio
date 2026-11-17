@@ -11,7 +11,7 @@ export default function Testimonials() {
   return (
     <section className="section">
       <div className="wrap">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.reviews.eyebrow}</p>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.reviews.eyebrow}</p>
         <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.reviews.title}</h2>
         <div className="mt-8 columns-1 gap-4 md:columns-2">
           {t.reviews.items.map((item, index) => (

@@ -2,7 +2,7 @@
 
 import { useLanguage } from "@/lib/i18n";
 
-const spots = ["bg-yellow", "bg-sky", "bg-mint", "bg-coral text-cream", "bg-cream-2"];
+const spots = ["bg-yellow", "bg-sky", "bg-mint", "bg-coral", "bg-cream-2"];
 
 export default function Why() {
   const { t } = useLanguage();
@@ -10,7 +10,7 @@ export default function Why() {
   return (
     <section className="section">
       <div className="wrap">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.why.eyebrow}</p>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.why.eyebrow}</p>
         <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.why.title}</h2>
         <ol className="mt-8 space-y-4">
           {t.why.items.map((item, index) => (

@@ -23,15 +23,15 @@ export default function Footer() {
         <div>
           <Mascot className="h-24 w-auto" />
           <p className="display mt-2 text-2xl text-cream">{t.hero.name}</p>
-          <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/75">{t.footer.note}</p>
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-cream-on-ink">{t.footer.note}</p>
           <nav className="mt-4 flex flex-wrap gap-x-4 gap-y-2" aria-label="Footer">
             {links.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm text-cream/80 hover:text-yellow">
+              <a key={link.href} href={link.href} className="inline-flex min-h-12 items-center text-sm text-cream hover:text-yellow">
                 {link.label}
               </a>
             ))}
           </nav>
-          <p className="mt-6 text-xs text-cream/60">{t.footer.copyright}</p>
+          <p className="mt-6 text-sm text-cream-on-ink">{t.footer.copyright}</p>
         </div>
         <div className="flex flex-col items-start gap-2 text-sm font-bold">
           <a href={LINKS.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-yellow">

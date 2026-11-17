@@ -432,7 +432,7 @@ export const content = {
       lead: "Лендинги и сайты-визитки на чистом коде, без конструкторов.",
       price: "от $85",
       priceNote:
-        "сайт-визитка или лендинг. Цены в долларах. Курс НБРБ на 17.11.2026: 1 USD = 2,9977 BYN.",
+        "Это цена сайта-визитки или лендинга. Цены в долларах. Курс НБРБ на 17.11.2026:\u00a01\u00a0USD\u00a0=\u00a02,9977\u00a0BYN.",
       ctaTelegram: "Обсудить проект",
       ctaForm: "Оставить заявку",
       asideTitle: "С чего начать",
@@ -444,14 +444,14 @@ export const content = {
     },
     services: {
       eyebrow: "Услуги",
-      title: "Что могу сделать",
-      lead: "Страница, сайт из нескольких страниц, бот, наполнение уже готового сайта и разбор того, что мешает заявкам.",
+      title: "Что я могу сделать",
+      lead: "Беру одну страницу, сайт из нескольких страниц, бота, наполнение уже готового сайта и разбор того, что мешает заявкам.",
       includes: "Что входит",
     },
     prices: {
       eyebrow: "Цены",
       title: "Сколько стоит",
-      lead: "Сумму фиксирую в смете до начала работы. Цены в долларах. Курс НБРБ на 17.11.2026: 1 USD = 2,9977 BYN.",
+      lead: "Сумму фиксирую в смете до начала работы. Цены в долларах. Курс НБРБ на 17.11.2026:\u00a01\u00a0USD\u00a0=\u00a02,9977\u00a0BYN.",
       service: "Услуга",
       price: "Цена",
     },
@@ -471,7 +471,7 @@ export const content = {
       items: [
         {
           title: "Чистый код",
-          text: "Сайты собираю кодом, без конструктора: страницу можно править и она не привязана к чужой платформе.",
+          text: "Сайты собираю кодом, без конструктора: страницу можно править, и она не привязана к чужой платформе.",
         },
         {
           title: "Быстрая загрузка",
@@ -498,7 +498,7 @@ export const content = {
       steps: [
         { title: "Заявка в переписке", text: "Вы пишете, что нужно. Я отвечаю в Telegram или на почту." },
         { title: "ТЗ и смета", text: "Собираю задачу в короткий текст и называю стоимость и срок до старта." },
-        { title: "Предоплата", text: "Работа начинается после предоплаты. Размер — в смете, не «как обычно»." },
+        { title: "Предоплата", text: "Работа начинается после предоплаты. Размер предоплаты указываю в смете." },
         { title: "Этапы с показом", text: "Показываю промежуточный результат, чтобы было видно, куда идёт работа." },
         { title: "Правки", text: "Правки в рамках согласованной задачи входят в работу. Новый объём оцениваю отдельно." },
         { title: "Запуск и доступы", text: "Публикую сайт или передаю бота и отдаю доступы вам." },
@@ -510,7 +510,7 @@ export const content = {
       items: [
         {
           q: "Какие сроки?",
-          a: "Срок называю в смете, когда понятна задача. Одностраничный сайт и бот занимают разное время, поэтому до задачи срок не обещаю.",
+          a: "Срок называю в смете, когда задача уже понятна. Одностраничный сайт и бот занимают разное время, поэтому до разбора задачи срок не называю.",
         },
         {
           q: "Как устроена оплата?",
@@ -522,7 +522,7 @@ export const content = {
         },
         {
           q: "Как проходят правки?",
-          a: "Правки в рамках согласованного задания входят в работу. Если задача меняется и появляется новый объём, оцениваю его отдельно и согласовываю до того, как делать.",
+          a: "Правки в рамках согласованного задания входят в работу. Если задача меняется и появляется новый объём, оцениваю его отдельно и согласовываю, прежде чем браться.",
         },
       ],
     },
@@ -590,6 +590,12 @@ export const content = {
       note: "Сайты и Telegram-боты для малого бизнеса. Общение в переписке, удалённо.",
       copyright: "© 2026 Татьяна Яновская",
     },
+    notFound: {
+      title: "Такой страницы нет",
+      text: "Ссылка могла устареть. Вернитесь на главную или напишите в Telegram.",
+      home: "На главную",
+      write: "Обсудить проект",
+    },
     blog: {
       title: "Блог",
       subtitle: "Заметки из практики AI и Telegram-ботов",
@@ -638,7 +644,7 @@ export const content = {
       lead: "Landing pages and business-card sites in clean code, without website builders.",
       price: "from $85",
       priceNote:
-        "a business-card site or a landing page. Prices are in US dollars. NBRB rate on 17 November 2026: 1 USD = 2.9977 BYN.",
+        "a business-card site or a landing page. Prices are in US dollars. NBRB rate on 17 November 2026:\u00a01\u00a0USD\u00a0=\u00a02.9977\u00a0BYN.",
       ctaTelegram: "Discuss a project",
       ctaForm: "Leave a request",
       asideTitle: "Where to start",
@@ -651,13 +657,13 @@ export const content = {
     services: {
       eyebrow: "Services",
       title: "What I can do",
-      lead: "A page, a site of several pages, a bot, filling a site you already have, and a look at what gets in the way of a request.",
+      lead: "I take a single page, a multi-page site, a bot, filling a site you already have, and a look at what gets in the way of a request.",
       includes: "Included",
     },
     prices: {
       eyebrow: "Prices",
       title: "What it costs",
-      lead: "The sum is fixed in the estimate before work starts. Prices are in US dollars. NBRB rate on 17 November 2026: 1 USD = 2.9977 BYN.",
+      lead: "The sum is fixed in the estimate before work starts. Prices are in US dollars. NBRB rate on 17 November 2026:\u00a01\u00a0USD\u00a0=\u00a02.9977\u00a0BYN.",
       service: "Service",
       price: "Price",
     },
@@ -707,7 +713,7 @@ export const content = {
         { title: "Prepayment", text: "Work starts after a prepayment. The amount is in the estimate, not a default." },
         { title: "Stages you can see", text: "I show the work in progress so it is clear where it is going." },
         { title: "Edits", text: "Edits inside the agreed task are part of the work. A new scope is priced separately." },
-        { title: "Launch and access", text: "I publish the site or hand over the bot, and give you the access." },
+        { title: "Launch and access", text: "I publish the site or hand over the bot, and give you access." },
       ],
     },
     faq: {
@@ -796,6 +802,12 @@ export const content = {
     footer: {
       note: "Websites and Telegram bots for small businesses. In writing, remote.",
       copyright: "© 2026 Tatsiana Yanovskaya",
+    },
+    notFound: {
+      title: "This page is not here",
+      text: "The link may be out of date. Go back to the homepage or write on Telegram.",
+      home: "Back home",
+      write: "Discuss a project",
     },
     blog: {
       title: "Blog",

@@ -42,10 +42,10 @@ export default function Contact() {
     <section id="contacts" className="section scroll-mt-28">
       <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.1fr)]">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.contact.eyebrow}</p>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.contact.eyebrow}</p>
           <h2 className="display mt-2 text-3xl sm:text-5xl">{t.contact.title}</h2>
           <p className="mt-4 text-base leading-relaxed text-muted">{t.contact.lead}</p>
-          <Mascot className="mt-4 h-40 w-auto" />
+          <Mascot pose="wave" className="mt-2 h-44 w-auto" title={t.hero.name} />
           <ul className="mt-4 space-y-2 text-sm font-bold">
             <li>
               <a href={LINKS.telegram} target="_blank" rel="noopener noreferrer" className="underline decoration-coral decoration-2 underline-offset-4">
@@ -73,7 +73,12 @@ export default function Contact() {
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="rounded-[1.6rem] border-[3px] border-ink bg-sky p-5 shadow-[7px_7px_0_#16140f] sm:p-7" noValidate>
+        <form
+          onSubmit={onSubmit}
+          className="rounded-[1.6rem] border-[3px] border-ink bg-sky p-5 shadow-[7px_7px_0_#16140f] sm:p-7"
+          noValidate
+          aria-describedby="form-note"
+        >
           <div className="space-y-4">
             <label className="block text-sm font-bold" htmlFor="need">
               {t.contact.need}
@@ -120,7 +125,14 @@ export default function Contact() {
               {t.contact.submitEmail}
             </button>
           </div>
-          <p className="mt-4 text-xs leading-relaxed">{t.contact.formNote}</p>
+          <p id="form-note" className="mt-4 text-sm leading-relaxed">
+            {t.contact.formNote}
+          </p>
+          <noscript>
+            <p className="mt-3 text-sm font-bold">
+              <a href={LINKS.telegram}>{t.contact.telegram}</a>
+            </p>
+          </noscript>
         </form>
       </div>
     </section>

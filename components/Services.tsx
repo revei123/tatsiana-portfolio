@@ -1,5 +1,6 @@
 "use client";
 
+import Mascot from "@/components/Mascot";
 import { visibleServices } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -12,8 +13,11 @@ export default function Services() {
   return (
     <section id="services" className="section scroll-mt-28">
       <div className="wrap">
-        <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.services.eyebrow}</p>
-        <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.services.title}</h2>
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-rust">{t.services.eyebrow}</p>
+        <div className="mt-2 flex items-end justify-between gap-4">
+          <h2 className="display max-w-3xl text-3xl sm:text-5xl">{t.services.title}</h2>
+          <Mascot pose="peek" className="h-20 w-auto shrink-0 sm:h-28" title={t.hero.name} />
+        </div>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">{t.services.lead}</p>
 
         <div className="mt-8 border-t-[3px] border-ink">
@@ -25,7 +29,7 @@ export default function Services() {
                 key={service.id}
                 className={`grid gap-4 border-b-[3px] border-ink px-4 py-6 sm:px-6 lg:grid-cols-[4.5rem_minmax(0,1fr)_auto] lg:items-start ${washes[index % washes.length]}`}
               >
-                <p className="display text-2xl text-coral">{String(index + 1).padStart(2, "0")}</p>
+                <p className="display text-2xl text-rust">{String(index + 1).padStart(2, "0")}</p>
                 <div>
                   <h3 className="display text-2xl sm:text-3xl">{copy.title}</h3>
                   <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted">{copy.summary}</p>
