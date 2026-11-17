@@ -13,10 +13,8 @@ export default function LanguageSwitcher({ className = "" }: { className?: strin
         type="button"
         onClick={() => setLocale(code)}
         aria-pressed={active}
-        className={`rounded-md px-2.5 py-1 text-xs font-semibold uppercase tracking-wider transition-colors ${
-          active
-            ? "bg-neon-cyan/15 text-neon-cyan"
-            : "text-muted hover:text-neon-cyan"
+        className={`rounded-md px-2 py-1 text-xs font-semibold tracking-wide ${
+          active ? "bg-accent text-[#f7f4ee]" : "text-muted hover:text-ink"
         }`}
       >
         {label}
@@ -26,7 +24,7 @@ export default function LanguageSwitcher({ className = "" }: { className?: strin
 
   return (
     <div
-      className={`inline-flex items-center rounded-lg border border-white/10 bg-white/5 p-0.5 ${className}`}
+      className={`inline-flex items-center gap-0.5 rounded-md border border-line bg-card p-0.5 ${className}`}
       role="group"
       aria-label="Language"
     >

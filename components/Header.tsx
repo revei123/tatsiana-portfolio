@@ -1,118 +1,107 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import BrandLogo from "@/components/BrandLogo";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Header() {
   const { t } = useLanguage();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const links = [
-    { href: "#about", label: t.nav.about },
-    { href: "#projects", label: t.nav.projects },
-    { href: "#blog", label: t.nav.blog },
-    { href: "#contact", label: t.nav.contact },
+    { href: "#services", label: t.nav.services },
+    { href: "#works", label: t.nav.works },
+    { href: "#process", label: t.nav.process },
+    { href: "#prices", label: t.nav.prices },
+    { href: "#faq", label: t.nav.faq },
+    { href: "#contacts", label: t.nav.contact },
   ];
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-md"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <a
-          href="#top"
-          className="flex shrink-0 items-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/60"
-          aria-label="Татьяна Яновская — разработчик ПО"
-        >
+    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+      <a href="#content" className="skip-link">
+        {t.nav.skip}
+      </a>
+      <div className="h-1 bg-accent" aria-hidden="true" />
+      <div className="wrap flex items-center justify-between gap-3 py-3">
+        <a href="#top" className="shrink-0" aria-label={t.hero.name}>
           <BrandLogo priority />
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main">
+        <nav className="hidden items-center gap-5 xl:flex" aria-label="Main">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted transition-colors hover:text-neon-cyan"
+              className="text-sm text-muted hover:text-ink"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <LanguageSwitcher />
-          <a
-            href={LINKS.telegram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary rounded-xl px-4 py-2 text-sm"
-          >
+          <a href="#contacts" className="btn btn-primary px-4">
             {t.nav.cta}
           </a>
         </div>
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <LanguageSwitcher />
           <button
             type="button"
-            className="rounded-lg border border-white/10 p-2 text-foreground"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink"
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-label={open ? t.nav.close : t.nav.menu}
           >
-            {open ? <X size={20} /> : <Menu size={20} />}
+            <span className="sr-only">{open ? t.nav.close : t.nav.menu}</span>
+            {open ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            className="border-b border-white/10 bg-[#0a0a0f]/95 backdrop-blur-md md:hidden"
-          >
-            <nav className="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-4">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg px-3 py-2 text-sm text-muted hover:bg-white/5 hover:text-neon-cyan"
-                >
-                  {link.label}
-                </a>
-              ))}
+      {open && (
+        <nav className="border-t border-line bg-paper xl:hidden" aria-label="Main">
+          <div className="wrap flex flex-col gap-1 py-3">
+            {links.map((link) => (
               <a
-                href={LINKS.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary mt-2 rounded-xl px-4 py-2 text-center text-sm"
+                key={link.href}
+                href={link.href}
                 onClick={() => setOpen(false)}
+                className="rounded-md px-2 py-3 text-base text-ink"
               >
-                {t.nav.cta}
+                {link.label}
               </a>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            ))}
+            <a
+              href="#contacts"
+              onClick={() => setOpen(false)}
+              className="btn btn-primary mt-2"
+            >
+              {t.nav.cta}
+            </a>
+          </div>
+        </nav>
+      )}
     </header>
+  );
+}
+
+function MenuIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+      <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
   );
 }

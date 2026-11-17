@@ -1,53 +1,73 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Manrope, Unbounded } from "next/font/google";
+import { Literata, Manrope } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n";
+import { LINKS, content } from "@/lib/content";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const unbounded = Unbounded({
-  variable: "--font-unbounded",
+const literata = Literata({
+  variable: "--font-literata",
   subsets: ["latin", "cyrillic"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
-const jetbrains = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin", "cyrillic"],
-});
+const title = content.ru.meta.title;
+const description = content.ru.meta.description;
 
 export const metadata: Metadata = {
-  title: "Татьяна Яновская — разработчик ПО | AI Engineer",
-  description:
-    "AI-инженер из Беларуси. Telegram-боты, LangChain, автоматизация и веб-разработка. Remote · USDT.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     apple: [{ url: "/logo.png" }],
     shortcut: ["/favicon.png"],
   },
   openGraph: {
-    title: "Татьяна Яновская — разработчик ПО",
-    description:
-      "AI Engineer & Python Developer. Telegram-боты, LangChain, автоматизация и веб.",
+    title,
+    description,
+    url: SITE_URL,
+    siteName: "Татьяна Яновская",
+    locale: "ru_RU",
     type: "website",
     images: [
       {
-        url: "/logo.png",
-        width: 512,
-        height: 512,
-        alt: "Татьяна Яновская — разработчик ПО",
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Татьяна Яновская — сайты и Telegram-боты для малого бизнеса",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Татьяна Яновская — разработчик ПО",
-    description:
-      "AI Engineer & Python Developer. Telegram-боты, LangChain, автоматизация и веб.",
-    images: ["/logo.png"],
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/og.png"],
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Татьяна Яновская",
+  url: SITE_URL,
+  email: LINKS.emailRaw,
+  image: `${SITE_URL}/og.png`,
+  description,
+  areaServed: "Remote",
+  availableLanguage: ["Russian", "English"],
+  sameAs: [LINKS.telegram, LINKS.github],
 };
 
 export default function RootLayout({
@@ -58,10 +78,13 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${manrope.variable} ${unbounded.variable} ${jetbrains.variable} antialiased`}
+      className={`${manrope.variable} ${literata.variable} antialiased`}
     >
       <body className="font-sans text-foreground">
-        <div className="site-bg" aria-hidden="true" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

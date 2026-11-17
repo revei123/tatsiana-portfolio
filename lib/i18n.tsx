@@ -6,7 +6,7 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from "react";
 import { content, type Locale } from "./content";
@@ -21,36 +21,54 @@ type LanguageContextValue = {
 };
 
 const STORAGE_KEY = "portfolio-locale";
+const LOCALE_EVENT = "portfolio-locale-change";
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 function isLocale(value: string | null): value is Locale {
   return value === "ru" || value === "en";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("ru");
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
+function readLocale(): Locale {
+  try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    if (isLocale(saved)) {
-      setLocaleState(saved);
-    }
-    setReady(true);
-  }, []);
+    return isLocale(saved) ? saved : "ru";
+  } catch {
+    return "ru";
+  }
+}
+
+function serverLocale(): Locale {
+  return "ru";
+}
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener(LOCALE_EVENT, onStoreChange);
+  window.addEventListener("storage", onStoreChange);
+  return () => {
+    window.removeEventListener(LOCALE_EVENT, onStoreChange);
+    window.removeEventListener("storage", onStoreChange);
+  };
+}
+
+function writeLocale(next: Locale) {
+  window.localStorage.setItem(STORAGE_KEY, next);
+  window.dispatchEvent(new Event(LOCALE_EVENT));
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const locale = useSyncExternalStore(subscribe, readLocale, serverLocale);
 
   useEffect(() => {
-    if (!ready) return;
     document.documentElement.lang = locale;
-    window.localStorage.setItem(STORAGE_KEY, locale);
-  }, [locale, ready]);
+    document.title = content[locale].meta.title;
+  }, [locale]);
 
   const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
+    writeLocale(next);
   }, []);
 
   const toggleLocale = useCallback(() => {
-    setLocaleState((prev) => (prev === "ru" ? "en" : "ru"));
+    writeLocale(readLocale() === "ru" ? "en" : "ru");
   }, []);
 
   const value = useMemo<LanguageContextValue>(
