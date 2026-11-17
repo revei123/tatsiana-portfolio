@@ -6,7 +6,7 @@ type BrandLogoProps = {
 };
 
 export default function BrandLogo({
-  className = "h-auto w-[168px] sm:w-[200px]",
+  className = "h-auto w-[132px] sm:w-[168px]",
   priority = false,
 }: BrandLogoProps) {
   return (

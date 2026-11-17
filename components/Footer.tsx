@@ -1,6 +1,7 @@
 "use client";
 
 import { GithubIcon } from "@/components/GithubIcon";
+import Mascot from "@/components/Mascot";
 import { LINKS } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -17,40 +18,33 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="border-t border-line bg-paper">
-      <div className="wrap py-10">
-        <p className="font-semibold text-ink">{t.hero.name}</p>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">{t.footer.note}</p>
-        <nav className="mt-6 flex flex-wrap gap-x-5 gap-y-2" aria-label="Footer">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm text-muted hover:text-ink">
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-          <a
-            href={LINKS.telegram}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-ink hover:text-accent"
-          >
+    <footer className="border-t-[3px] border-ink bg-ink text-cream">
+      <div className="wrap flex flex-col gap-6 py-10 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <Mascot className="h-24 w-auto" />
+          <p className="display mt-2 text-2xl text-cream">{t.hero.name}</p>
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/75">{t.footer.note}</p>
+          <nav className="mt-4 flex flex-wrap gap-x-4 gap-y-2" aria-label="Footer">
+            {links.map((link) => (
+              <a key={link.href} href={link.href} className="text-sm text-cream/80 hover:text-yellow">
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <p className="mt-6 text-xs text-cream/60">{t.footer.copyright}</p>
+        </div>
+        <div className="flex flex-col items-start gap-2 text-sm font-bold">
+          <a href={LINKS.telegram} target="_blank" rel="noopener noreferrer" className="hover:text-yellow">
             Telegram
           </a>
-          <a href={LINKS.email} className="text-ink hover:text-accent">
+          <a href={LINKS.email} className="hover:text-yellow">
             {LINKS.emailRaw}
           </a>
-          <a
-            href={LINKS.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-ink hover:text-accent"
-          >
+          <a href={LINKS.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-yellow">
             <GithubIcon size={16} />
             GitHub
           </a>
         </div>
-        <p className="mt-8 text-xs text-muted">{t.footer.copyright}</p>
       </div>
     </footer>
   );

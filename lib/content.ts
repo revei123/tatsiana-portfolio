@@ -21,11 +21,14 @@ export function telegramHref(text?: string) {
  */
 export type ServiceId =
   | "landing"
+  | "multipage"
   | "telegram-bot"
   | "cms-fill"
   | "audit"
   | "catalog"
   | "shop";
+
+export type PriceLine = { label: string; amount: string };
 
 export type Service = {
   id: ServiceId;
@@ -34,23 +37,23 @@ export type Service = {
   /** Where the figure came from. Not shown on the page. */
   source: string;
   price: Record<Locale, string>;
+  lines?: Record<Locale, PriceLine[]>;
   ru: { title: string; summary: string; includes: string[] };
   en: { title: string; summary: string; includes: string[] };
 };
 
-const NOT_ON_DEMOS =
-  "На https://snezhnaya-dubrova.vercel.app/, https://bugtrakt.vercel.app/ и https://nemanfrost.vercel.app/ отдельной цены этой услуги нет.";
+const OWNER_USD =
+  "Цены назвала владелица 17.11.2026 в долларах. Курс НБРБ на эту дату: 1 USD = 2,9977 BYN. В рублях на сайте больше не показываем.";
 
 export const SERVICES: Service[] = [
   {
     id: "landing",
     visible: true,
     priceKind: "from",
-    source:
-      "«от 2 500 ₽» — стартовая цена из постановки редизайна (герой). На демо-сайтах Снежная Дуброва, Бугтракт и Неманфрост прайса услуг разработчика нет: там цены проживания и перевозок вымышленных компаний.",
-    price: { ru: "от 2 500 ₽", en: "from 2 500 ₽" },
+    source: OWNER_USD + " Сайт-визитка или лендинг — от $85.",
+    price: { ru: "от $85", en: "from $85" },
     ru: {
-      title: "Лендинг и сайт-визитка",
+      title: "Сайт-визитка или лендинг",
       summary:
         "Одна страница или короткий сайт: что вы делаете, для кого и как оставить заявку.",
       includes: [
@@ -61,7 +64,7 @@ export const SERVICES: Service[] = [
       ],
     },
     en: {
-      title: "Landing page and business-card site",
+      title: "Business-card site or landing page",
       summary:
         "One page or a short site: what you do, who it is for, and how to leave a request.",
       includes: [
@@ -73,84 +76,116 @@ export const SERVICES: Service[] = [
     },
   },
   {
-    id: "telegram-bot",
+    id: "multipage",
     visible: true,
-    priceKind: "request",
-    source: NOT_ON_DEMOS,
-    price: { ru: "по запросу", en: "on request" },
+    priceKind: "from",
+    source: OWNER_USD + " Многостраничный сайт — от $200, третий язык отдельно.",
+    price: { ru: "от $200", en: "from $200" },
     ru: {
-      title: "Telegram-бот",
-      summary:
-        "Бот, который отвечает на типовые вопросы и собирает заявку, пока вы не у телефона.",
+      title: "Многостраничный сайт",
+      summary: "Несколько страниц: структура, тексты по вашим данным и мобильная версия.",
       includes: [
-        "Сценарий переписки под вашу задачу",
-        "Кнопки и сбор заявки",
-        "Передача бота и короткая инструкция",
+        "Страницы под задачу и мобильная версия",
+        "Форма заявки",
+        "Третий язык считается отдельно",
       ],
     },
     en: {
-      title: "Telegram bot",
-      summary:
-        "A bot that answers typical questions and collects a request when you are away from the phone.",
+      title: "Multi-page site",
+      summary: "Several pages: a structure, copy from your materials, and a mobile version.",
       includes: [
-        "A conversation written for your task",
-        "Buttons and a request form",
-        "The bot handed over with a short instruction",
+        "Pages for the task and a mobile version",
+        "A request form",
+        "A third language is priced separately",
+      ],
+    },
+  },
+  {
+    id: "telegram-bot",
+    visible: true,
+    priceKind: "from",
+    source: OWNER_USD + " Простой Telegram-бот — от $40. Сложнее — по объёму.",
+    price: { ru: "от $40", en: "from $40" },
+    ru: {
+      title: "Простой Telegram-бот",
+      summary: "Бот с меню и заявкой. Если сценарий сложнее этого списка, считаю по объёму.",
+      includes: [
+        "Меню",
+        "Ответы на частые вопросы",
+        "Сбор заявки",
+        "Уведомление вам в Telegram",
+      ],
+    },
+    en: {
+      title: "Simple Telegram bot",
+      summary: "A bot with a menu and a request. Anything beyond this list is priced by the scope.",
+      includes: [
+        "A menu",
+        "Answers to common questions",
+        "Collecting a request",
+        "A notification to you in Telegram",
       ],
     },
   },
   {
     id: "cms-fill",
     visible: true,
-    priceKind: "request",
-    source: NOT_ON_DEMOS,
-    price: { ru: "по запросу", en: "on request" },
+    priceKind: "from",
+    source:
+      OWNER_USD +
+      " Наполнение: карточка товара из готовых данных от $1, с описанием и обработкой фото от $2, страница от $15.",
+    price: { ru: "от $1", en: "from $1" },
+    lines: {
+      ru: [
+        { label: "Карточка товара из готовых данных", amount: "от $1" },
+        { label: "С описанием и обработкой фото", amount: "от $2" },
+        { label: "Страница", amount: "от $15" },
+      ],
+      en: [
+        { label: "Product card from ready data", amount: "from $1" },
+        { label: "With a description and photo processing", amount: "from $2" },
+        { label: "A page", amount: "from $15" },
+      ],
+    },
     ru: {
       title: "Наполнение WordPress и 1C-Битрикс",
-      summary:
-        "Тексты, фотографии и страницы на уже существующем сайте. Новый сайт при этом не собираю.",
+      summary: "Наполняю уже существующий сайт. Новый сайт при этом не собираю.",
       includes: [
-        "Перенос текстов и фотографий в текущий сайт",
-        "Страницы в рамках уже стоящего шаблона",
-        "WordPress или 1C-Битрикс — как у вас уже сделано",
+        "Карточка товара из готовых данных",
+        "Карточка с описанием и обработкой фото",
+        "Отдельная страница",
       ],
     },
     en: {
       title: "Filling a WordPress or 1C-Bitrix site",
-      summary:
-        "Texts, photos, and pages on a site you already have. This is not a new site build.",
+      summary: "I fill a site you already have. This is not a new site build.",
       includes: [
-        "Texts and photos placed into the current site",
-        "Pages within the template that is already there",
-        "WordPress or 1C-Bitrix, whichever you already use",
+        "A product card from data you already have",
+        "A card with a description and processed photos",
+        "A separate page",
       ],
     },
   },
   {
     id: "audit",
     visible: true,
-    priceKind: "request",
-    source: NOT_ON_DEMOS,
-    price: { ru: "по запросу", en: "on request" },
+    priceKind: "from",
+    source: OWNER_USD + " Аудит небольшого сайта — от $50: техническая часть, базовое SEO, удобство, отчёт.",
+    price: { ru: "от $50", en: "from $50" },
     ru: {
-      title: "Аудит сайта",
-      summary:
-        "Смотрю, что на сайте мешает человеку оставить заявку, и присылаю это списком.",
+      title: "Аудит небольшого сайта",
+      summary: "Смотрю небольшой сайт и присылаю отчёт, без обещания места в поиске.",
       includes: [
-        "Телефонная версия, скорость открытия и формы",
-        "Понятность текста с точки зрения клиента",
-        "Письменный список, что править в первую очередь",
+        "Техническая часть",
+        "Базовое SEO",
+        "Удобство",
+        "Письменный отчёт",
       ],
     },
     en: {
-      title: "Website audit",
-      summary:
-        "I look at what stops a person from leaving a request, and send that as a written list.",
-      includes: [
-        "The phone layout, how fast the page opens, and the forms",
-        "Whether the text is clear to a customer",
-        "A written list of what to fix first",
-      ],
+      title: "Audit of a small site",
+      summary: "I look at a small site and send a report. This is not a promise of a search ranking.",
+      includes: ["The technical side", "Basic SEO", "Ease of use", "A written report"],
     },
   },
   {
@@ -187,6 +222,8 @@ export type Work = {
   demo: boolean;
   /** Real client project. */
   realClient: boolean;
+  /** Example price for a site of this kind. Not a receipt for that demo. */
+  example?: Record<Locale, string>;
   ru: {
     title: string;
     task: string;
@@ -239,6 +276,10 @@ export const WORKS: Work[] = [
     image: "/works/bugtrakt.webp",
     demo: true,
     realClient: false,
+    example: {
+      ru: "Пример цены такого сайта — $115: 8 страниц, 3–4 дня, тексты по данным клиента, мобильная версия, форма заявки.",
+      en: "An example price for a site like this is $115: 8 pages, 3–4 days, copy from the client's materials, a mobile version, and a request form.",
+    },
     ru: {
       title: "Бугтракт",
       task: "Собрать сайт перевозчика: направления, услуги, документы и расчёт ставки в одном месте.",
@@ -266,6 +307,10 @@ export const WORKS: Work[] = [
     image: "/works/nemanfrost.webp",
     demo: true,
     realClient: false,
+    example: {
+      ru: "Пример цены такого сайта — $95.",
+      en: "An example price for a site like this is $95.",
+    },
     ru: {
       title: "Неманфрост",
       task: "Сайт рефрижераторных перевозок: температура, направления и как оставить заявку.",
@@ -376,7 +421,7 @@ export const content = {
       prices: "Цены",
       faq: "Вопросы",
       contact: "Контакты",
-      cta: "Написать",
+      cta: "Обсудить проект",
       menu: "Меню",
       close: "Закрыть меню",
       skip: "К содержанию",
@@ -385,9 +430,10 @@ export const content = {
       name: "Татьяна Яновская",
       title: "Сайты и Telegram-боты для малого бизнеса",
       lead: "Лендинги и сайты-визитки на чистом коде, без конструкторов.",
-      price: "от 2 500 ₽",
-      priceNote: "для лендинга и сайта-визитки. Остальное считаю после того, как понятна задача.",
-      ctaTelegram: "Написать в Telegram",
+      price: "от $85",
+      priceNote:
+        "сайт-визитка или лендинг. Цены в долларах. Курс НБРБ на 17.11.2026: 1 USD = 2,9977 BYN.",
+      ctaTelegram: "Обсудить проект",
       ctaForm: "Оставить заявку",
       asideTitle: "С чего начать",
       aside: [
@@ -399,13 +445,13 @@ export const content = {
     services: {
       eyebrow: "Услуги",
       title: "Что могу сделать",
-      lead: "Беру понятные задачи малого бизнеса: страница, бот, наполнение уже готового сайта и разбор того, что мешает заявкам.",
+      lead: "Страница, сайт из нескольких страниц, бот, наполнение уже готового сайта и разбор того, что мешает заявкам.",
       includes: "Что входит",
     },
     prices: {
       eyebrow: "Цены",
       title: "Сколько стоит",
-      lead: "Сумму фиксирую в смете до начала работы. «По запросу» значит: назову цену, когда увижу задачу.",
+      lead: "Сумму фиксирую в смете до начала работы. Цены в долларах. Курс НБРБ на 17.11.2026: 1 USD = 2,9977 BYN.",
       service: "Услуга",
       price: "Цена",
     },
@@ -508,7 +554,7 @@ export const content = {
     },
     contact: {
       eyebrow: "Контакты",
-      title: "Напишите, что нужно",
+      title: "Давайте обсудим",
       lead: "Отвечаю в переписке, обычно в течение 30 минут.",
       telegram: "Telegram",
       email: "Почта",
@@ -581,7 +627,7 @@ export const content = {
       prices: "Prices",
       faq: "Questions",
       contact: "Contact",
-      cta: "Write",
+      cta: "Discuss a project",
       menu: "Menu",
       close: "Close menu",
       skip: "Skip to content",
@@ -590,9 +636,10 @@ export const content = {
       name: "Tatsiana Yanovskaya",
       title: "Websites and Telegram bots for small businesses",
       lead: "Landing pages and business-card sites in clean code, without website builders.",
-      price: "from 2 500 ₽",
-      priceNote: "for a landing page or a business-card site. Everything else is priced once the task is clear.",
-      ctaTelegram: "Message on Telegram",
+      price: "from $85",
+      priceNote:
+        "a business-card site or a landing page. Prices are in US dollars. NBRB rate on 17 November 2026: 1 USD = 2.9977 BYN.",
+      ctaTelegram: "Discuss a project",
       ctaForm: "Leave a request",
       asideTitle: "Where to start",
       aside: [
@@ -604,13 +651,13 @@ export const content = {
     services: {
       eyebrow: "Services",
       title: "What I can do",
-      lead: "I take clear tasks for a small business: a page, a bot, filling a site you already have, and a look at what gets in the way of a request.",
+      lead: "A page, a site of several pages, a bot, filling a site you already have, and a look at what gets in the way of a request.",
       includes: "Included",
     },
     prices: {
       eyebrow: "Prices",
       title: "What it costs",
-      lead: "The sum is fixed in the estimate before work starts. “On request” means I name the price once I have seen the task.",
+      lead: "The sum is fixed in the estimate before work starts. Prices are in US dollars. NBRB rate on 17 November 2026: 1 USD = 2.9977 BYN.",
       service: "Service",
       price: "Price",
     },
@@ -713,7 +760,7 @@ export const content = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Write what you need",
+      title: "Let's discuss it",
       lead: "I reply in writing, usually within 30 minutes.",
       telegram: "Telegram",
       email: "Email",

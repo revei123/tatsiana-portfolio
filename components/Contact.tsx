@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Mascot from "@/components/Mascot";
 import { LINKS, telegramHref } from "@/lib/content";
 import { useLanguage } from "@/lib/i18n";
 
@@ -10,8 +11,7 @@ export default function Contact() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
+    const data = new FormData(event.currentTarget);
     const need = String(data.get("need") || "").trim();
     const budget = String(data.get("budget") || "").trim();
     const example = String(data.get("example") || "").trim();
@@ -39,43 +39,33 @@ export default function Contact() {
   }
 
   return (
-    <section id="contacts" className="section scroll-mt-28 border-t border-line">
-      <div className="wrap grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16">
+    <section id="contacts" className="section scroll-mt-28">
+      <div className="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.1fr)]">
         <div>
-          <p className="eyebrow">{t.contact.eyebrow}</p>
-          <h2 className="display mt-3 text-3xl text-ink sm:text-4xl">{t.contact.title}</h2>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.contact.eyebrow}</p>
+          <h2 className="display mt-2 text-3xl sm:text-5xl">{t.contact.title}</h2>
           <p className="mt-4 text-base leading-relaxed text-muted">{t.contact.lead}</p>
-
-          <ul className="mt-8 space-y-3 text-sm">
+          <Mascot className="mt-4 h-40 w-auto" />
+          <ul className="mt-4 space-y-2 text-sm font-bold">
             <li>
-              <a
-                href={LINKS.telegram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent"
-              >
+              <a href={LINKS.telegram} target="_blank" rel="noopener noreferrer" className="underline decoration-coral decoration-2 underline-offset-4">
                 {t.contact.telegram}
               </a>
             </li>
             <li>
-              <a
-                href={LINKS.email}
-                className="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent"
-              >
+              <a href={LINKS.email} className="underline decoration-coral decoration-2 underline-offset-4">
                 {LINKS.emailRaw}
               </a>
             </li>
           </ul>
-
-          <p className="mt-8 text-sm font-semibold text-ink">{t.contact.quick}</p>
-          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+          <div className="mt-5 flex flex-col gap-2">
             {t.contact.quickItems.map((item) => (
               <a
                 key={item.label}
                 href={telegramHref(item.text)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-secondary"
+                className="btn btn-secondary w-fit"
               >
                 {item.label}
               </a>
@@ -83,29 +73,29 @@ export default function Contact() {
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="border border-line bg-card p-6 sm:p-8" noValidate>
+        <form onSubmit={onSubmit} className="rounded-[1.6rem] border-[3px] border-ink bg-sky p-5 shadow-[7px_7px_0_#16140f] sm:p-7" noValidate>
           <div className="space-y-4">
-            <label className="block text-sm font-semibold text-ink" htmlFor="need">
+            <label className="block text-sm font-bold" htmlFor="need">
               {t.contact.need}
               <input
                 id="need"
                 name="need"
                 required
                 placeholder={t.contact.needPlaceholder}
-                className="mt-2 w-full border border-line bg-paper px-3 py-3 text-base font-normal text-ink placeholder:text-muted"
+                className="mt-2 w-full rounded-xl border-2 border-ink bg-cream px-3 py-3 text-base font-normal"
                 aria-invalid={error ? true : undefined}
               />
             </label>
-            <label className="block text-sm font-semibold text-ink" htmlFor="budget">
+            <label className="block text-sm font-bold" htmlFor="budget">
               {t.contact.budget}
               <input
                 id="budget"
                 name="budget"
                 placeholder={t.contact.budgetPlaceholder}
-                className="mt-2 w-full border border-line bg-paper px-3 py-3 text-base font-normal text-ink placeholder:text-muted"
+                className="mt-2 w-full rounded-xl border-2 border-ink bg-cream px-3 py-3 text-base font-normal"
               />
             </label>
-            <label className="block text-sm font-semibold text-ink" htmlFor="example">
+            <label className="block text-sm font-bold" htmlFor="example">
               {t.contact.example}
               <input
                 id="example"
@@ -113,12 +103,12 @@ export default function Contact() {
                 type="text"
                 inputMode="url"
                 placeholder={t.contact.examplePlaceholder}
-                className="mt-2 w-full border border-line bg-paper px-3 py-3 text-base font-normal text-ink placeholder:text-muted"
+                className="mt-2 w-full rounded-xl border-2 border-ink bg-cream px-3 py-3 text-base font-normal"
               />
             </label>
           </div>
           {error && (
-            <p className="mt-3 text-sm text-accent" role="alert">
+            <p className="mt-3 text-sm font-bold" role="alert">
               {error}
             </p>
           )}
@@ -130,7 +120,7 @@ export default function Contact() {
               {t.contact.submitEmail}
             </button>
           </div>
-          <p className="mt-4 text-xs leading-relaxed text-muted">{t.contact.formNote}</p>
+          <p className="mt-4 text-xs leading-relaxed">{t.contact.formNote}</p>
         </form>
       </div>
     </section>

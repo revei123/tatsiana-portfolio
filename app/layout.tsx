@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Literata, Manrope } from "next/font/google";
+import { Manrope, Unbounded } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n";
 import { LINKS, content } from "@/lib/content";
 import { SITE_URL } from "@/lib/site";
@@ -8,12 +8,12 @@ import "./globals.css";
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600", "700"],
   display: "swap",
 });
 
-const literata = Literata({
-  variable: "--font-literata",
+const unbounded = Unbounded({
+  variable: "--font-unbounded",
   subsets: ["latin", "cyrillic"],
   weight: ["600", "700"],
   display: "swap",
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${manrope.variable} ${literata.variable} antialiased`}
+      className={`${manrope.variable} ${unbounded.variable} antialiased`}
     >
       <body className="font-sans text-foreground">
         <script

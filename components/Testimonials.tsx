@@ -2,23 +2,29 @@
 
 import { useLanguage } from "@/lib/i18n";
 
+const paints = ["bg-yellow", "bg-sky", "bg-mint", "bg-cream-2"];
+const tilts = ["-rotate-1", "rotate-1", "rotate-2", "-rotate-2"];
+
 export default function Testimonials() {
   const { t } = useLanguage();
 
   return (
-    <section className="section border-t border-line">
+    <section className="section">
       <div className="wrap">
-        <p className="eyebrow">{t.reviews.eyebrow}</p>
-        <h2 className="display mt-3 max-w-2xl text-3xl text-ink sm:text-4xl">{t.reviews.title}</h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {t.reviews.items.map((item) => (
-            <figure key={item.author} className="flex flex-col border border-line bg-card p-6">
-              <blockquote className="text-base leading-relaxed text-ink">
+        <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">{t.reviews.eyebrow}</p>
+        <h2 className="display mt-2 max-w-3xl text-3xl sm:text-5xl">{t.reviews.title}</h2>
+        <div className="mt-8 columns-1 gap-4 md:columns-2">
+          {t.reviews.items.map((item, index) => (
+            <figure
+              key={item.author}
+              className={`bubble mb-4 break-inside-avoid p-5 ${paints[index % paints.length]} ${tilts[index % tilts.length]}`}
+            >
+              <blockquote className="text-base leading-relaxed">
                 <p>{item.text}</p>
               </blockquote>
-              <figcaption className="mt-6 border-t border-line pt-4">
-                <p className="font-semibold text-ink">{item.author}</p>
-                <p className="mt-1 text-sm text-muted">{item.role}</p>
+              <figcaption className="mt-4 border-t-2 border-ink pt-3">
+                <p className="font-bold">{item.author}</p>
+                <p className="text-sm">{item.role}</p>
               </figcaption>
             </figure>
           ))}

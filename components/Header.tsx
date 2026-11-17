@@ -19,23 +19,18 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper">
+    <header className="sticky top-0 z-40 border-b-[3px] border-ink bg-cream">
       <a href="#content" className="skip-link">
         {t.nav.skip}
       </a>
-      <div className="h-1 bg-accent" aria-hidden="true" />
-      <div className="wrap flex items-center justify-between gap-3 py-3">
+      <div className="wrap flex items-center justify-between gap-3 py-2.5">
         <a href="#top" className="shrink-0" aria-label={t.hero.name}>
           <BrandLogo priority />
         </a>
 
-        <nav className="hidden items-center gap-5 xl:flex" aria-label="Main">
+        <nav className="hidden items-center gap-4 xl:flex" aria-label="Main">
           {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted hover:text-ink"
-            >
+            <a key={link.href} href={link.href} className="text-sm font-semibold hover:text-coral">
               {link.label}
             </a>
           ))}
@@ -52,35 +47,30 @@ export default function Header() {
           <LanguageSwitcher />
           <button
             type="button"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink bg-cream-2"
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-label={open ? t.nav.close : t.nav.menu}
           >
-            <span className="sr-only">{open ? t.nav.close : t.nav.menu}</span>
             {open ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>
 
       {open && (
-        <nav className="border-t border-line bg-paper xl:hidden" aria-label="Main">
+        <nav className="border-t-2 border-ink bg-yellow xl:hidden" aria-label="Main">
           <div className="wrap flex flex-col gap-1 py-3">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-md px-2 py-3 text-base text-ink"
+                className="rounded-full px-3 py-3 text-base font-semibold"
               >
                 {link.label}
               </a>
             ))}
-            <a
-              href="#contacts"
-              onClick={() => setOpen(false)}
-              className="btn btn-primary mt-2"
-            >
+            <a href="#contacts" onClick={() => setOpen(false)} className="btn btn-primary mt-2">
               {t.nav.cta}
             </a>
           </div>
@@ -93,7 +83,7 @@ export default function Header() {
 function MenuIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-      <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="currentColor" strokeWidth="1.8" />
     </svg>
   );
 }
@@ -101,7 +91,7 @@ function MenuIcon() {
 function CloseIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
-      <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M4 4l10 10M14 4 4 14" stroke="currentColor" strokeWidth="1.8" />
     </svg>
   );
 }

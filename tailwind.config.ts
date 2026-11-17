@@ -23,7 +23,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
-        display: ["var(--font-literata)", "Georgia", "serif"],
+        display: ["var(--font-unbounded)", "system-ui", "sans-serif"],
       },
     },
   },
