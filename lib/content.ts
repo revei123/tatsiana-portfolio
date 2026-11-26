@@ -22,6 +22,7 @@ export function telegramHref(text?: string) {
 export type ServiceId =
   | "landing"
   | "multipage"
+  | "search-connect"
   | "telegram-bot"
   | "cms-fill"
   | "audit"
@@ -59,7 +60,8 @@ export const SERVICES: Service[] = [
       includes: [
         "Адаптивная вёрстка на чистом коде, без конструктора",
         "Форма заявки в Telegram или на почту",
-        "Базовые title и description для поиска",
+        "Сайт готов к поиску: заголовки, карта сайта и разметка для Google и Яндекса",
+        "Подключу поиск на ваших аккаунтах, права остаются у вас",
         "Передача файлов после запуска",
       ],
     },
@@ -70,7 +72,8 @@ export const SERVICES: Service[] = [
       includes: [
         "Responsive layout in clean code, not a website builder",
         "A request form that opens Telegram or email",
-        "Basic title and description for search",
+        "The site is ready for search: titles, a sitemap, and markup for Google and Yandex",
+        "I'll connect search on your accounts; you keep the rights",
         "Files handed over after launch",
       ],
     },
@@ -97,6 +100,36 @@ export const SERVICES: Service[] = [
         "Pages for the task and a mobile version",
         "A request form",
         "A third language is priced separately",
+      ],
+    },
+  },
+  {
+    id: "search-connect",
+    visible: true,
+    priceKind: "from",
+    source:
+      "Татьяна назвала 50 BYN при заказе вместе с сайтом 26.11.2026. Официальный курс НБРБ на 26.11.2026: 1 USD = 3,0065 BYN (https://api.nbrb.by/exrates/rates/USD?parammode=2). 50 / 3,0065 ≈ 16,63, на сайте округлено до $17 в формате «от $17».",
+    price: { ru: "от $17", en: "from $17" },
+    ru: {
+      title: "Подключение к Google и Яндексу",
+      summary:
+        "Дополнительная опция вместе с сайтом. На ваших аккаунтах подключу Google, Яндекс и Bing, отправлю карту сайта и заявлю индексацию. Если есть офис — помогу с Яндекс Бизнесом и 2ГИС.",
+      includes: [
+        "Google Search Console и Яндекс Вебмастер",
+        "Bing и отправка карты сайта",
+        "Запрос индексации",
+        "При необходимости — Яндекс Бизнес и 2ГИС",
+      ],
+    },
+    en: {
+      title: "Google and Yandex setup",
+      summary:
+        "An add-on when you order a site. I connect Google, Yandex, and Bing on your accounts, submit the sitemap, and request indexing. If you have an office, I can also help with Yandex Business and 2GIS.",
+      includes: [
+        "Google Search Console and Yandex Webmaster",
+        "Bing and sitemap submission",
+        "An indexing request",
+        "Yandex Business and 2GIS if you need them",
       ],
     },
   },
