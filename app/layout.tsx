@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Manrope, Unbounded } from "next/font/google";
 import { LanguageProvider } from "@/lib/i18n";
 import { LINKS, content } from "@/lib/content";
-import { SITE_URL } from "@/lib/site";
+import { SEARCH_VERIFICATION, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -22,11 +22,20 @@ const unbounded = Unbounded({
 const title = content.ru.meta.title;
 const description = content.ru.meta.description;
 
+const verification: NonNullable<Metadata["verification"]> = {
+  ...(SEARCH_VERIFICATION.google ? { google: SEARCH_VERIFICATION.google } : {}),
+  ...(SEARCH_VERIFICATION.yandex ? { yandex: SEARCH_VERIFICATION.yandex } : {}),
+  ...(SEARCH_VERIFICATION.bing
+    ? { other: { "msvalidate.01": SEARCH_VERIFICATION.bing } }
+    : {}),
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title,
   description,
   alternates: { canonical: "/" },
+  verification,
   robots: { index: true, follow: true },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
@@ -77,7 +86,10 @@ const jsonLd = {
       email: LINKS.emailRaw,
       image: `${SITE_URL}/og.png`,
       description,
-      areaServed: "Remote",
+      areaServed: [
+        { "@type": "Country", name: "Belarus" },
+        { "@type": "Country", name: "Russia" },
+      ],
       availableLanguage: ["Russian", "English"],
       founder: { "@type": "Person", name: "Татьяна Яновская" },
     },
